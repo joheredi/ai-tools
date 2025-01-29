@@ -10,6 +10,17 @@ For **52 specs totaling 500 test cases**, writing tests manually would take **da
 
 ---
 
+## **TL;DR; The Results: Massive Time Savings**
+
+✅ **Total time spent:** ~5 hours (**4 hours building the tool, 1 hour fixing small errors**).  
+✅ **Estimated manual effort avoided:** **8-10 days** of writing tests manually.  
+✅ **Faster issue detection:**
+
+- Issues in my emitter surfaced **immediately** instead of weeks later.
+- While these issues might not have been missed entirely, they **would have been caught much later**, increasing development costs.
+
+---
+
 ## **How I Built It**
 
 ### **1️⃣ The Approach: Using Copilot to Write Tests**
@@ -240,17 +251,6 @@ describe("Routes", () => {
 > ✔ **Imports are correct**.  
 > ✔ **Root client is used properly**.  
 > ✔ **Nested namespaces map to the right subclients**.
-
----
-
-## **The Results: Massive Time Savings**
-
-✅ **Total time spent:** ~5 hours (**4 hours building the tool, 1 hour fixing small errors**).  
-✅ **Estimated manual effort avoided:** **8-10 days** of writing tests manually.  
-✅ **Faster issue detection:**
-
-- Issues in my emitter surfaced **immediately** instead of weeks later.
-- While these issues might not have been missed entirely, they **would have been caught much later**, increasing development costs.
 
 ---
 
