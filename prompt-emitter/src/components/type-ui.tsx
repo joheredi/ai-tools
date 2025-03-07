@@ -13,6 +13,7 @@ export function TypeUI({ type }: { type: Type }) {
           <JsonValue jsValue={"(Anonymous)"}/>
         )}
       </JsonObjectProperty>
+      <JsonObjectProperty name="kind" jsValue={type.kind} />
       <JsonObjectProperty name="typeId">
         <TypeId type={type} />
       </JsonObjectProperty>

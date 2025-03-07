@@ -20,7 +20,6 @@ export async function $onEmit(context: EmitContext) {
         <SourceFile path={"out.json"}>
           <TypesProvider>
             <JsonArray>
-              <ReferencedTypes />
               <InspectType type={operations[5]} />
             </JsonArray>
           </TypesProvider>
