@@ -1,0 +1,216 @@
+=== Referenced Types ===
+Namespace: DemoService [typeId: o1]
+
+  namespace:
+  models:
+    Model: Widget [typeId: o2]
+
+      properties:
+        ModelProperty: id [typeId: o3]
+
+          optional: false
+          type: string
+          model: DemoService.Widget [typeId: o2]
+
+        ModelProperty: weight [typeId: o4]
+
+          optional: false
+          type: int32
+          model: DemoService.Widget [typeId: o2]
+
+        ModelProperty: color [typeId: o5]
+
+          optional: false
+          type: String "red" | String "blue"
+          model: DemoService.Widget [typeId: o2]
+      namespace: DemoService [typeId: o1]
+      sourceModels: []
+      derivedModels: []
+
+    Model: Error [typeId: o6]
+
+      properties:
+        ModelProperty: code [typeId: o7]
+
+          optional: false
+          type: int32
+          model: DemoService.Error [typeId: o6]
+
+        ModelProperty: message [typeId: o8]
+
+          optional: false
+          type: string
+          model: DemoService.Error [typeId: o6]
+      namespace: DemoService [typeId: o1]
+      sourceModels: []
+      derivedModels: []
+  scalars: {}
+  operations: {}
+  interfaces:
+    Interface: Widgets [typeId: o9]
+
+      namespace: DemoService [typeId: o1]
+      sourceInterfaces: []
+      operations:
+        Operation: list [typeId: o10]
+
+          namespace: DemoService [typeId: o1]
+          parameters:
+            Model:  [typeId: o11]
+
+              properties: {}
+              namespace: DemoService [typeId: o1]
+              derivedModels: []
+              sourceModels: []
+          returnType: DemoService.Widget[] | DemoService.Error
+          sourceOperation:
+          interface: DemoService.Widgets [typeId: o9]
+
+        Operation: read [typeId: o12]
+
+          namespace: DemoService [typeId: o1]
+          parameters:
+            Model:  [typeId: o13]
+
+              properties:
+                ModelProperty: id [typeId: o14]
+
+                  optional: false
+                  type: string
+                  model: DemoService.{ id: string } [typeId: o13]
+              namespace: DemoService [typeId: o1]
+              derivedModels: []
+              sourceModels: []
+          returnType: DemoService.Widget | DemoService.Error
+          sourceOperation:
+          interface: DemoService.Widgets [typeId: o9]
+
+        Operation: create [typeId: o15]
+
+          namespace: DemoService [typeId: o1]
+          parameters:
+            Model:  [typeId: o16]
+
+              properties:
+                ModelProperty: id [typeId: o17]
+
+                  optional: false
+                  type: string
+                  model: DemoService.{ id: string, weight: int32, color: "red" | "blue" } [typeId: o16]
+                  sourceProperty: DemoService.Widget.id
+
+                ModelProperty: weight [typeId: o18]
+
+                  optional: false
+                  type: int32
+                  model: DemoService.{ id: string, weight: int32, color: "red" | "blue" } [typeId: o16]
+                  sourceProperty: DemoService.Widget.weight
+
+                ModelProperty: color [typeId: o19]
+
+                  optional: false
+                  type: String "red" | String "blue"
+                  model: DemoService.{ id: string, weight: int32, color: "red" | "blue" } [typeId: o16]
+                  sourceProperty: DemoService.Widget.color
+              namespace: DemoService [typeId: o1]
+              derivedModels: []
+              sourceModels:
+
+          returnType: DemoService.Widget | DemoService.Error
+          sourceOperation:
+          interface: DemoService.Widgets [typeId: o9]
+
+        Operation: update [typeId: o20]
+
+          namespace: DemoService [typeId: o1]
+          parameters:
+            Model:  [typeId: o21]
+
+              properties:
+                ModelProperty: id [typeId: o22]
+
+                  optional: false
+                  type: string
+                  model: DemoService.{ id: string, weight: int32, color: "red" | "blue" } [typeId: o21]
+                  sourceProperty: DemoService.Widget.id
+
+                ModelProperty: weight [typeId: o23]
+
+                  optional: false
+                  type: int32
+                  model: DemoService.{ id: string, weight: int32, color: "red" | "blue" } [typeId: o21]
+                  sourceProperty: DemoService.Widget.weight
+
+                ModelProperty: color [typeId: o24]
+
+                  optional: false
+                  type: String "red" | String "blue"
+                  model: DemoService.{ id: string, weight: int32, color: "red" | "blue" } [typeId: o21]
+                  sourceProperty: DemoService.Widget.color
+              namespace: DemoService [typeId: o1]
+              derivedModels: []
+              sourceModels:
+
+          returnType: DemoService.Widget | DemoService.Error
+          sourceOperation:
+          interface: DemoService.Widgets [typeId: o9]
+
+        Operation: delete [typeId: o25]
+
+          namespace: DemoService [typeId: o1]
+          parameters:
+            Model:  [typeId: o26]
+
+              properties:
+                ModelProperty: id [typeId: o27]
+
+                  optional: false
+                  type: string
+                  model: DemoService.{ id: string } [typeId: o26]
+              namespace: DemoService [typeId: o1]
+              derivedModels: []
+              sourceModels: []
+          returnType:  | DemoService.Error
+          sourceOperation:
+          interface: DemoService.Widgets [typeId: o9]
+
+        Operation: analyze [typeId: o0]
+
+          namespace: DemoService [typeId: o1]
+          parameters:
+            Model:  [typeId: o28]
+
+              properties:
+                ModelProperty: id [typeId: o29]
+
+                  optional: false
+                  type: string
+                  model: DemoService.{ id: string } [typeId: o28]
+              namespace: DemoService [typeId: o1]
+              derivedModels: []
+              sourceModels: []
+          returnType: string | DemoService.Error
+          sourceOperation:
+          interface: DemoService.Widgets [typeId: o9]
+  unions: {}
+  enums: {}
+  decoratorDeclarations: {}
+  functionDeclarations: {}
+Operation: analyze [typeId: o0]
+
+  namespace: DemoService [typeId: o1]
+  parameters:
+    Model:  [typeId: o28]
+
+      properties:
+        ModelProperty: id [typeId: o29]
+
+          optional: false
+          type: string
+          model: DemoService.{ id: string } [typeId: o28]
+      namespace: DemoService [typeId: o1]
+      derivedModels: []
+      sourceModels: []
+  returnType: string | DemoService.Error
+  sourceOperation:
+  interface: DemoService.Widgets [typeId: o9]
