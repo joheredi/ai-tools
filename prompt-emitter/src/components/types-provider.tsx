@@ -12,10 +12,10 @@ export function TypesProvider(props: TypesProviderProps) {
     const key = refkey(type);
     typeIdMap.set(key.key, type);
     return key.key;
-  }
+  };
   const getTypeById = (id: string): Type | undefined => {
     return typeIdMap.get(id);
-  }
+  };
 
   return (
     <TypesContext.Provider value={{ types, trackType, getTypeById }}>

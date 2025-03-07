@@ -10,20 +10,21 @@ import { $ } from "@typespec/compiler/experimental/typekit";
 import { InspectType } from "./components/inspect-type.jsx";
 import { useTypes } from "./context/types-context.jsx";
 import { TypesProvider } from "./components/types-provider.jsx";
+import { JsonArray, SourceFile } from "@alloy-js/json";
 
 export async function $onEmit(context: EmitContext) {
   const operations = getOperations();
   const program = (
     <ay.Output>
       <ay.SourceDirectory path={"src"}>
-        <ay.SourceFile path={"out.txt"} filetype="txt">
+        <SourceFile path={"out.json"}>
           <TypesProvider>
-            <ay.List hardline>
+            <JsonArray>
               <ReferencedTypes />
               <InspectType type={operations[5]} />
-            </ay.List>
+            </JsonArray>
           </TypesProvider>
-        </ay.SourceFile>
+        </SourceFile>
       </ay.SourceDirectory>
     </ay.Output>
   );
@@ -35,7 +36,6 @@ function ReferencedTypes() {
 
   return (
     <>
-      === Referenced Types ===
       <hbr />
       <ay.For each={Array.from(types.values())}>
         {(type) => <InspectType type={type} />}

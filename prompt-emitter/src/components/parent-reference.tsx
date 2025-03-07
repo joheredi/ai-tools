@@ -1,8 +1,5 @@
 import { Type } from "@typespec/compiler";
 import { NamedTypeRef } from "./named-type-reference.jsx";
-import { useTypes } from "../context/types-context.jsx";
-import { $ } from "@typespec/compiler/experimental/typekit";
-import { TypeId } from "./type-id.jsx";
 
 export function ParentReference({ type }: { type: Type }) {
   switch (type.kind) {
@@ -15,7 +12,7 @@ export function ParentReference({ type }: { type: Type }) {
     case "Model":
     case "Union":
       if (type.name !== undefined) {
-        return <><NamedTypeRef type={type as any} /> <TypeId type={type}/></>;
+        return <NamedTypeRef type={type as any} />;
       } else {
         return null;
       }

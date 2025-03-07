@@ -1,0 +1,530 @@
+[
+  {
+    "name": "DemoService",
+    "typeId": "o1",
+    "namespace": {
+      "namedRef": "",
+      "typeId": null
+    },
+    "models": [
+      {
+        "name": "Widget",
+        "typeId": "o2",
+        "properties": [
+          {
+            "name": "id",
+            "typeId": "o3",
+            "optional": false,
+            "type": {
+              "namedRef": "string",
+              "typeId": null
+            },
+            "model": {
+              "namedRef": "DemoService.Widget",
+              "typeId": "o2"
+            }
+          },
+          {
+            "name": "weight",
+            "typeId": "o4",
+            "optional": false,
+            "type": {
+              "namedRef": "int32",
+              "typeId": null
+            },
+            "model": {
+              "namedRef": "DemoService.Widget",
+              "typeId": "o2"
+            }
+          },
+          {
+            "name": "color",
+            "typeId": "o5",
+            "optional": false,
+            "type": [
+              {
+                "kind": "String",
+                "value": "red"
+              },
+              {
+                "kind": "String",
+                "value": "blue"
+              }
+            ],
+            "model": {
+              "namedRef": "DemoService.Widget",
+              "typeId": "o2"
+            }
+          }
+        ],
+        "namespace": {
+          "namedRef": "DemoService",
+          "typeId": "o1"
+        },
+        "sourceModels": [],
+        "derivedModels": []
+      },
+      {
+        "name": "Error",
+        "typeId": "o6",
+        "properties": [
+          {
+            "name": "code",
+            "typeId": "o7",
+            "optional": false,
+            "type": {
+              "namedRef": "int32",
+              "typeId": null
+            },
+            "model": {
+              "namedRef": "DemoService.Error",
+              "typeId": "o6"
+            }
+          },
+          {
+            "name": "message",
+            "typeId": "o8",
+            "optional": false,
+            "type": {
+              "namedRef": "string",
+              "typeId": null
+            },
+            "model": {
+              "namedRef": "DemoService.Error",
+              "typeId": "o6"
+            }
+          }
+        ],
+        "namespace": {
+          "namedRef": "DemoService",
+          "typeId": "o1"
+        },
+        "sourceModels": [],
+        "derivedModels": []
+      }
+    ],
+    "scalars": {},
+    "operations": {},
+    "interfaces": [
+      {
+        "name": "Widgets",
+        "typeId": "o9",
+        "namespace": {
+          "namedRef": "DemoService",
+          "typeId": "o1"
+        },
+        "sourceInterfaces": [],
+        "operations": [
+          {
+            "name": "list",
+            "typeId": "o10",
+            "namespace": {
+              "namedRef": "DemoService",
+              "typeId": "o1"
+            },
+            "parameters": {
+              "name": "(Anonymous)",
+              "typeId": "o11",
+              "properties": {},
+              "namespace": {
+                "namedRef": "DemoService",
+                "typeId": "o1"
+              },
+              "derivedModels": [],
+              "sourceModels": []
+            },
+            "returnType": [
+              {
+                "namedRef": "DemoService.Widget[]",
+                "typeId": null
+              },
+              {
+                "namedRef": "DemoService.Error",
+                "typeId": "o6"
+              }
+            ],
+            "sourceOperation": null,
+            "interface": {
+              "namedRef": "DemoService.Widgets",
+              "typeId": "o9"
+            }
+          },
+          {
+            "name": "read",
+            "typeId": "o12",
+            "namespace": {
+              "namedRef": "DemoService",
+              "typeId": "o1"
+            },
+            "parameters": {
+              "name": "(Anonymous)",
+              "typeId": "o13",
+              "properties": [
+                {
+                  "name": "id",
+                  "typeId": "o14",
+                  "optional": false,
+                  "type": {
+                    "namedRef": "string",
+                    "typeId": null
+                  },
+                  "model": {
+                    "namedRef": "DemoService.{ id: string }",
+                    "typeId": "o13"
+                  }
+                }
+              ],
+              "namespace": {
+                "namedRef": "DemoService",
+                "typeId": "o1"
+              },
+              "derivedModels": [],
+              "sourceModels": []
+            },
+            "returnType": [
+              {
+                "namedRef": "DemoService.Widget",
+                "typeId": "o2"
+              },
+              {
+                "namedRef": "DemoService.Error",
+                "typeId": "o6"
+              }
+            ],
+            "sourceOperation": null,
+            "interface": {
+              "namedRef": "DemoService.Widgets",
+              "typeId": "o9"
+            }
+          },
+          {
+            "name": "create",
+            "typeId": "o15",
+            "namespace": {
+              "namedRef": "DemoService",
+              "typeId": "o1"
+            },
+            "parameters": {
+              "name": "(Anonymous)",
+              "typeId": "o16",
+              "properties": [
+                {
+                  "name": "id",
+                  "typeId": "o17",
+                  "optional": false,
+                  "type": {
+                    "namedRef": "string",
+                    "typeId": null
+                  },
+                  "model": {
+                    "namedRef": "DemoService.{ id: string, weight: int32, color: \"red\" | \"blue\" }",
+                    "typeId": "o16"
+                  },
+                  "sourceProperty": {
+                    "namedRef": "DemoService.Widget.id",
+                    "typeId": "o3"
+                  }
+                },
+                {
+                  "name": "weight",
+                  "typeId": "o18",
+                  "optional": false,
+                  "type": {
+                    "namedRef": "int32",
+                    "typeId": null
+                  },
+                  "model": {
+                    "namedRef": "DemoService.{ id: string, weight: int32, color: \"red\" | \"blue\" }",
+                    "typeId": "o16"
+                  },
+                  "sourceProperty": {
+                    "namedRef": "DemoService.Widget.weight",
+                    "typeId": "o4"
+                  }
+                },
+                {
+                  "name": "color",
+                  "typeId": "o19",
+                  "optional": false,
+                  "type": [
+                    {
+                      "kind": "String",
+                      "value": "red"
+                    },
+                    {
+                      "kind": "String",
+                      "value": "blue"
+                    }
+                  ],
+                  "model": {
+                    "namedRef": "DemoService.{ id: string, weight: int32, color: \"red\" | \"blue\" }",
+                    "typeId": "o16"
+                  },
+                  "sourceProperty": {
+                    "namedRef": "DemoService.Widget.color",
+                    "typeId": "o5"
+                  }
+                }
+              ],
+              "namespace": {
+                "namedRef": "DemoService",
+                "typeId": "o1"
+              },
+              "derivedModels": [],
+              "sourceModels": []
+            },
+            "returnType": [
+              {
+                "namedRef": "DemoService.Widget",
+                "typeId": "o2"
+              },
+              {
+                "namedRef": "DemoService.Error",
+                "typeId": "o6"
+              }
+            ],
+            "sourceOperation": null,
+            "interface": {
+              "namedRef": "DemoService.Widgets",
+              "typeId": "o9"
+            }
+          },
+          {
+            "name": "update",
+            "typeId": "o20",
+            "namespace": {
+              "namedRef": "DemoService",
+              "typeId": "o1"
+            },
+            "parameters": {
+              "name": "(Anonymous)",
+              "typeId": "o21",
+              "properties": [
+                {
+                  "name": "id",
+                  "typeId": "o22",
+                  "optional": false,
+                  "type": {
+                    "namedRef": "string",
+                    "typeId": null
+                  },
+                  "model": {
+                    "namedRef": "DemoService.{ id: string, weight: int32, color: \"red\" | \"blue\" }",
+                    "typeId": "o21"
+                  },
+                  "sourceProperty": {
+                    "namedRef": "DemoService.Widget.id",
+                    "typeId": "o3"
+                  }
+                },
+                {
+                  "name": "weight",
+                  "typeId": "o23",
+                  "optional": false,
+                  "type": {
+                    "namedRef": "int32",
+                    "typeId": null
+                  },
+                  "model": {
+                    "namedRef": "DemoService.{ id: string, weight: int32, color: \"red\" | \"blue\" }",
+                    "typeId": "o21"
+                  },
+                  "sourceProperty": {
+                    "namedRef": "DemoService.Widget.weight",
+                    "typeId": "o4"
+                  }
+                },
+                {
+                  "name": "color",
+                  "typeId": "o24",
+                  "optional": false,
+                  "type": [
+                    {
+                      "kind": "String",
+                      "value": "red"
+                    },
+                    {
+                      "kind": "String",
+                      "value": "blue"
+                    }
+                  ],
+                  "model": {
+                    "namedRef": "DemoService.{ id: string, weight: int32, color: \"red\" | \"blue\" }",
+                    "typeId": "o21"
+                  },
+                  "sourceProperty": {
+                    "namedRef": "DemoService.Widget.color",
+                    "typeId": "o5"
+                  }
+                }
+              ],
+              "namespace": {
+                "namedRef": "DemoService",
+                "typeId": "o1"
+              },
+              "derivedModels": [],
+              "sourceModels": []
+            },
+            "returnType": [
+              {
+                "namedRef": "DemoService.Widget",
+                "typeId": "o2"
+              },
+              {
+                "namedRef": "DemoService.Error",
+                "typeId": "o6"
+              }
+            ],
+            "sourceOperation": null,
+            "interface": {
+              "namedRef": "DemoService.Widgets",
+              "typeId": "o9"
+            }
+          },
+          {
+            "name": "delete",
+            "typeId": "o25",
+            "namespace": {
+              "namedRef": "DemoService",
+              "typeId": "o1"
+            },
+            "parameters": {
+              "name": "(Anonymous)",
+              "typeId": "o26",
+              "properties": [
+                {
+                  "name": "id",
+                  "typeId": "o27",
+                  "optional": false,
+                  "type": {
+                    "namedRef": "string",
+                    "typeId": null
+                  },
+                  "model": {
+                    "namedRef": "DemoService.{ id: string }",
+                    "typeId": "o26"
+                  }
+                }
+              ],
+              "namespace": {
+                "namedRef": "DemoService",
+                "typeId": "o1"
+              },
+              "derivedModels": [],
+              "sourceModels": []
+            },
+            "returnType": {
+              "namedRef": "DemoService.Error",
+              "typeId": "o6"
+            },
+            "sourceOperation": null,
+            "interface": {
+              "namedRef": "DemoService.Widgets",
+              "typeId": "o9"
+            }
+          },
+          {
+            "name": "analyze",
+            "typeId": "o0",
+            "namespace": {
+              "namedRef": "DemoService",
+              "typeId": "o1"
+            },
+            "parameters": {
+              "name": "(Anonymous)",
+              "typeId": "o28",
+              "properties": [
+                {
+                  "name": "id",
+                  "typeId": "o29",
+                  "optional": false,
+                  "type": {
+                    "namedRef": "string",
+                    "typeId": null
+                  },
+                  "model": {
+                    "namedRef": "DemoService.{ id: string }",
+                    "typeId": "o28"
+                  }
+                }
+              ],
+              "namespace": {
+                "namedRef": "DemoService",
+                "typeId": "o1"
+              },
+              "derivedModels": [],
+              "sourceModels": []
+            },
+            "returnType": [
+              {
+                "namedRef": "string",
+                "typeId": null
+              },
+              {
+                "namedRef": "DemoService.Error",
+                "typeId": "o6"
+              }
+            ],
+            "sourceOperation": null,
+            "interface": {
+              "namedRef": "DemoService.Widgets",
+              "typeId": "o9"
+            }
+          }
+        ]
+      }
+    ],
+    "unions": {},
+    "enums": {},
+    "decoratorDeclarations": {},
+    "functionDeclarations": {}
+  },
+  {
+    "name": "analyze",
+    "typeId": "o0",
+    "namespace": {
+      "namedRef": "DemoService",
+      "typeId": "o1"
+    },
+    "parameters": {
+      "name": "(Anonymous)",
+      "typeId": "o28",
+      "properties": [
+        {
+          "name": "id",
+          "typeId": "o29",
+          "optional": false,
+          "type": {
+            "namedRef": "string",
+            "typeId": null
+          },
+          "model": {
+            "namedRef": "DemoService.{ id: string }",
+            "typeId": "o28"
+          }
+        }
+      ],
+      "namespace": {
+        "namedRef": "DemoService",
+        "typeId": "o1"
+      },
+      "derivedModels": [],
+      "sourceModels": []
+    },
+    "returnType": [
+      {
+        "namedRef": "string",
+        "typeId": null
+      },
+      {
+        "namedRef": "DemoService.Error",
+        "typeId": "o6"
+      }
+    ],
+    "sourceOperation": null,
+    "interface": {
+      "namedRef": "DemoService.Widgets",
+      "typeId": "o9"
+    }
+  }
+]

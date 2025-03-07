@@ -1,6 +1,4 @@
-import { ChatCompletionsToolDefinition } from "@azure-rest/ai-inference";
-
-const describeType: ChatCompletionsToolDefinition = {
+const describeType = {
   type: "function",
   function: {
     name: "describeType",

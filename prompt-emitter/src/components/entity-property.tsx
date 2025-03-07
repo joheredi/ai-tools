@@ -8,6 +8,7 @@ import { JsValue } from "./js-value.jsx";
 import { Indent } from "@alloy-js/core";
 import { useTypes } from "../context/types-context.jsx";
 import { $ } from "@typespec/compiler/experimental/typekit";
+import { JsonObjectProperty } from "@alloy-js/json";
 
 export interface EntityPropertyProps {
   name: string;
@@ -17,10 +18,9 @@ export interface EntityPropertyProps {
 
 export function EntityProperty(props: EntityPropertyProps) {
   return (
-    <>
-      {props.name}:{" "}
+    <JsonObjectProperty name={props.name}>
       <EntityPropertyValue value={props.value} action={props.action} />
-    </>
+    </JsonObjectProperty>
   );
 }
 
@@ -35,10 +35,9 @@ export function EntityPropertyValue({
 }: EntityPropertyValueProps) {
   const render = (x: Entity) => {
     const { types } = useTypes();
-    if(x.entityKind === "Type" && $.type.isUserDefined(x)) {
+    if (x.entityKind === "Type" && $.type.isUserDefined(x)) {
       types.add(x);
     }
-
 
     if (action === "parent") {
       return x.entityKind === "Type" ? <ParentReference type={x} /> : null;
@@ -48,15 +47,11 @@ export function EntityPropertyValue({
       return <EntityReference entity={x} />;
     }
 
-    return (
-      <Indent>
-        <EntityUI entity={x} />
-      </Indent>
-    );
+    return <EntityUI entity={x} />;
   };
 
   if (value === undefined) {
-    return null;
+    return "null";
   } else if (value.entityKind) {
     return render(value);
   } else if (

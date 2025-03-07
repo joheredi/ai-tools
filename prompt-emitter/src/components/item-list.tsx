@@ -1,4 +1,5 @@
 import { Children, For } from "@alloy-js/core";
+import { JsonArray } from "@alloy-js/json";
 
 interface ItemListProps<T> {
   items: Map<string | symbol, T> | T[];
@@ -21,10 +22,12 @@ export function ItemList<T extends object>(props: ItemListProps<T>) {
     : Array.from(props.items.values());
 
   return (
-    <For each={items} hardline>
-      {(item) => {
-        return props.render(item);
-      }}
-    </For>
+    <JsonArray>
+      <For each={items} hardline comma>
+        {(item) => {
+          return props.render(item);
+        }}
+      </For>
+    </JsonArray>
   );
 }

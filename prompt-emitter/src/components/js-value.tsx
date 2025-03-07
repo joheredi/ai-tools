@@ -16,7 +16,7 @@ export function JsValue({ value }: JsValueProps) {
     case "number":
       return String(value);
     case "string":
-      return `"${value}"`;
+      return `\"${value}\"`;
     case "boolean":
       return String(value);
     case "undefined":
@@ -55,6 +55,6 @@ export function JsValue({ value }: JsValueProps) {
     case "symbol":
       return value.toString();
     default:
-      return "";
+      return `""`;
   }
 }

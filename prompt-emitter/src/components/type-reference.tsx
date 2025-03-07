@@ -1,8 +1,10 @@
-import { Type } from "@typespec/compiler";
+import { isVoidType, Type } from "@typespec/compiler";
 import { NamedTypeRef } from "./named-type-reference.jsx";
 import { EntityUI } from "./entity-ui.jsx";
 import { $ } from "@typespec/compiler/experimental/typekit";
 import { SimpleType } from "./simple-type.jsx";
+import { For } from "@alloy-js/core";
+import { JsonArray, JsonArrayElement } from "@alloy-js/json";
 
 export function TypeReference({ type }: { type: Type }) {
   switch (type.kind) {
@@ -27,17 +29,25 @@ export function TypeReference({ type }: { type: Type }) {
       if ($.union.is(type) && type.name !== undefined) {
         return <NamedTypeRef type={type as any} />;
       } else {
+        const u = $.union.filter(type, (v) => !isVoidType(v.type) && !$.type.isNever(v.type));
+
+        if(u.variants.size === 1) {
+          const variant = Array.from(u.variants.values())[0]!;
+          return <TypeReference type={variant.type} />;
+        }
+
+
         return (
-          <>
-            {[...type.variants.values()].map((variant, i) => {
-              return (
-                <>
+          <JsonArray>
+            <For each={u.variants} comma line>
+              {(key, variant) => {
+                return <JsonArrayElement>
                   <TypeReference type={variant.type} />
-                  {i < type.variants.size - 1 ? " | " : ""}
-                </>
-              );
-            })}
-          </>
+                </JsonArrayElement>;
+              }}
+            </For>
+          </JsonArray>
+
         );
       }
 
