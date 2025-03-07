@@ -11,20 +11,22 @@ import { InspectType } from "./components/inspect-type.jsx";
 import { useTypes } from "./context/types-context.jsx";
 import { TypesProvider } from "./components/types-provider.jsx";
 import { JsonArray, SourceFile } from "@alloy-js/json";
+import { PromptEmitterProvider } from "./components/prompt-emitter-provider.jsx";
+import { createHttpPlugin } from "./plugins/http/http-plugin.js";
 
 export async function $onEmit(context: EmitContext) {
   const operations = getOperations();
   const program = (
     <ay.Output>
-      <ay.SourceDirectory path={"src"}>
-        <SourceFile path={"out.json"}>
-          <TypesProvider>
+      <PromptEmitterProvider plugins={[createHttpPlugin()]}>
+        <ay.SourceDirectory path={"src"}>
+          <SourceFile path={"out.json"}>
             <JsonArray>
               <InspectType type={operations[5]} />
             </JsonArray>
-          </TypesProvider>
-        </SourceFile>
-      </ay.SourceDirectory>
+          </SourceFile>
+        </ay.SourceDirectory>
+      </PromptEmitterProvider>
     </ay.Output>
   );
   await writeOutput(program as any, context.emitterOutputDir);

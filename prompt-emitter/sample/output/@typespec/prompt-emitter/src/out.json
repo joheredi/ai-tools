@@ -24,6 +24,10 @@
           "model": {
             "namedRef": "DemoService.{ id: string }",
             "typeId": "o2"
+          },
+          "http-metadata": {
+            "http-param-location": "path",
+            "http-body-kind": "single"
           }
         }
       ],
@@ -48,6 +52,10 @@
     "interface": {
       "namedRef": "DemoService.Widgets",
       "typeId": "o5"
+    },
+    "http-metadata": {
+      "verb": "post",
+      "path": "/widgets/{id}/analyze"
     }
   }
 ]

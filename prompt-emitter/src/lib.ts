@@ -9,6 +9,13 @@ export const $lib = createTypeSpecLibrary({
         default: "You must provide a `types` object when using `useTypes`.",
       },
     },
+    "use-plugin-manager-without-provider": {
+      severity: "error",
+      messages: {
+        default:
+          "You must provide a `pluginManager` object when using `usePluginManager`.",
+      },
+    },
   },
 });
 

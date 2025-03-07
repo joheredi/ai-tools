@@ -10,7 +10,7 @@ export function TypeUI({ type }: { type: Type }) {
         {"name" in type && type.name ? (
           <JsonValue jsValue={type.name?.toString()} />
         ) : (
-          <JsonValue jsValue={"(Anonymous)"}/>
+          <JsonValue jsValue={"(Anonymous)"} />
         )}
       </JsonObjectProperty>
       <JsonObjectProperty name="kind" jsValue={type.kind} />

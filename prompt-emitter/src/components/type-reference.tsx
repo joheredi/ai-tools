@@ -29,25 +29,28 @@ export function TypeReference({ type }: { type: Type }) {
       if ($.union.is(type) && type.name !== undefined) {
         return <NamedTypeRef type={type as any} />;
       } else {
-        const u = $.union.filter(type, (v) => !isVoidType(v.type) && !$.type.isNever(v.type));
+        const u = $.union.filter(
+          type,
+          (v) => !isVoidType(v.type) && !$.type.isNever(v.type),
+        );
 
-        if(u.variants.size === 1) {
+        if (u.variants.size === 1) {
           const variant = Array.from(u.variants.values())[0]!;
           return <TypeReference type={variant.type} />;
         }
-
 
         return (
           <JsonArray>
             <For each={u.variants} comma line>
               {(key, variant) => {
-                return <JsonArrayElement>
-                  <TypeReference type={variant.type} />
-                </JsonArrayElement>;
+                return (
+                  <JsonArrayElement>
+                    <TypeReference type={variant.type} />
+                  </JsonArrayElement>
+                );
               }}
             </For>
           </JsonArray>
-
         );
       }
 

@@ -44,7 +44,7 @@ export function JsValue({ value }: JsValueProps) {
         return `Buffer[${value.length}]`;
       }
 
-      return value.constructor.name;
+      return `"${value.constructor.name}"`;
     case "function":
       return (
         <List>
