@@ -1,5 +1,5 @@
 import { Children } from "@alloy-js/core/jsx-runtime";
-import { Plugin, PluginContext } from "../context/plugin-context.jsx";
+import { Plugin, PluginContext } from "../../context/plugin-context.jsx";
 import { TypesProvider } from "./types-provider.jsx";
 
 export interface PromptEmitterProviderProps {

@@ -7,29 +7,71 @@ import {
 } from "@typespec/compiler";
 import * as ay from "@alloy-js/core";
 import { $ } from "@typespec/compiler/experimental/typekit";
-import { InspectType } from "./components/inspect-type.jsx";
+import { InspectType } from "./components/type-inspector/inspect-type.jsx";
 import { useTypes } from "./context/types-context.jsx";
-import { TypesProvider } from "./components/types-provider.jsx";
+import { renderToMemory } from "./utils/render-to-memory.js";
+import { TypeDescription } from "./components/type-description.jsx";
+import AiInference, { isUnexpected } from "@azure-rest/ai-inference";
+import { serviceValidationPrompt } from "./ai/prompts/index.js";
+import { config } from "dotenv";
+import { tsServiceTest } from "./ai/prompts/ts-test.js";
 import { JsonArray, SourceFile } from "@alloy-js/json";
-import { PromptEmitterProvider } from "./components/prompt-emitter-provider.jsx";
+import { PromptEmitterProvider } from "./components/type-inspector/prompt-emitter-provider.jsx";
 import { createHttpPlugin } from "./plugins/http/http-plugin.js";
+import { createVisibilityPlugin } from "./plugins/visibility-plugin.js";
+import { TypesProvider } from "./components/type-inspector/types-provider.jsx";
+
+config();
 
 export async function $onEmit(context: EmitContext) {
   const operations = getOperations();
-  const program = (
+  const operationsDescription = await renderToMemory(
     <ay.Output>
-      <PromptEmitterProvider plugins={[createHttpPlugin()]}>
+      <PromptEmitterProvider
+        plugins={[createHttpPlugin(), createVisibilityPlugin()]}
+      >
         <ay.SourceDirectory path={"src"}>
           <SourceFile path={"out.json"}>
             <JsonArray>
+              <ReferencedTypes />
               <InspectType type={operations[5]} />
             </JsonArray>
           </SourceFile>
         </ay.SourceDirectory>
       </PromptEmitterProvider>
-    </ay.Output>
+    </ay.Output>,
   );
-  await writeOutput(program as any, context.emitterOutputDir);
+  console.log(process.env.COPILOT_KEY_CREDENTIAL);
+
+  const client = AiInference(
+    "https://models.inference.ai.azure.com",
+    {
+      key: process.env.COPILOT_KEY_CREDENTIAL ?? "",
+    },
+    { apiVersion: "2024-12-01-preview" },
+  );
+
+  const response = await client.path("/chat/completions").post({
+    body: {
+      model: process.env.COPILOT_MODEL ?? "",
+      messages: [
+        {
+          role: "user",
+          content: tsServiceTest(operationsDescription),
+        },
+      ],
+      seed: 1,
+    },
+  });
+
+  if (isUnexpected(response)) {
+    throw new Error(response.body.error.message);
+  }
+
+  await emitFile(context.program, {
+    path: joinPaths(context.emitterOutputDir, "output.ts"),
+    content: response.body.choices[0].message.content ?? "",
+  });
 }
 
 function ReferencedTypes() {

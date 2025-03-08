@@ -1,9 +1,9 @@
 import { Entity } from "@typespec/compiler";
-import { getPropertyRendering } from "../utils/type-config.js";
+import { getPropertyRendering } from "../../utils/type-config.js";
 import { EntityProperty } from "./entity-property.jsx";
 import { For } from "@alloy-js/core";
 import {} from "@alloy-js/json";
-import { usePluginManager } from "../context/plugin-context.jsx";
+import { usePluginManager } from "../../context/plugin-context.jsx";
 
 export interface EntityPropertiesProps {
   entity: Entity;
@@ -29,12 +29,15 @@ function getProperties(entity: Entity) {
     return true;
   });
 
-  for(const plugin of pluginManager.plugins) {
-    if(entity.entityKind !== "Type") continue;
+  for (const plugin of pluginManager.plugins) {
+    if (entity.entityKind !== "Type") continue;
 
     const metadata = plugin.getMetadata(entity);
     if (metadata && Object.keys(metadata).length > 0) {
-      properties.push([plugin.metadataPropertyName, {entityKind: "PluginMetadata", ...metadata}]);
+      properties.push([
+        plugin.metadataPropertyName,
+        { entityKind: "PluginMetadata", ...metadata },
+      ]);
     }
   }
 

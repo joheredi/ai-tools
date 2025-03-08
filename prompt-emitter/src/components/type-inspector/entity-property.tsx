@@ -1,14 +1,14 @@
 import { Entity } from "@typespec/compiler";
-import { EntityPropertyConfig } from "../utils/type-config.js";
+import { EntityPropertyConfig } from "../../utils/type-config.js";
 import { ParentReference } from "./parent-reference.jsx";
 import { EntityReference } from "./entity-reference.jsx";
 import { EntityUI } from "./entity-ui.jsx";
 import { ItemList } from "./item-list.jsx";
 import { JsValue } from "./js-value.jsx";
 import { For, Indent } from "@alloy-js/core";
-import { useTypes } from "../context/types-context.jsx";
+import { useTypes } from "../../context/types-context.jsx";
 import { $ } from "@typespec/compiler/experimental/typekit";
-import {JsonObject, JsonObjectProperty} from "@alloy-js/json";
+import { JsonObject, JsonObjectProperty } from "@alloy-js/json";
 
 export interface EntityPropertyProps {
   name: string;
@@ -33,25 +33,25 @@ export function EntityPropertyValue({
   value,
   action,
 }: EntityPropertyValueProps) {
-  const render = (x: Entity 
-    | {entityKind: "PluginMetadata"}) => {
+  const render = (x: Entity | { entityKind: "PluginMetadata" }) => {
     const { types } = useTypes();
-    if(x.entityKind === "Type" && $.type.isUserDefined(x)) {
+    if (x.entityKind === "Type" && $.type.isUserDefined(x)) {
       types.add(x);
     }
 
-    if(x.entityKind === "PluginMetadata") {
-      const {entityKind, ...metadataProperties} = x as Record<string, any>; 
+    if (x.entityKind === "PluginMetadata") {
+      const { entityKind, ...metadataProperties } = x as Record<string, any>;
       const metadata = Object.entries(metadataProperties);
-      return <JsonObject>
-        <For each={metadata} comma line>
-          {([name, value]) => {
-            return < JsonObjectProperty name={name} jsValue={value}/>;
-          }}
-        </For>
-      </JsonObject>
+      return (
+        <JsonObject>
+          <For each={metadata} comma line>
+            {([name, value]) => {
+              return <JsonObjectProperty name={name} jsValue={value} />;
+            }}
+          </For>
+        </JsonObject>
+      );
     }
-
 
     if (action === "parent") {
       return x.entityKind === "Type" ? <ParentReference type={x} /> : null;
@@ -61,9 +61,7 @@ export function EntityPropertyValue({
       return <EntityReference entity={x} />;
     }
 
-    return (
-        <EntityUI entity={x} />
-    );
+    return <EntityUI entity={x} />;
   };
 
   if (value === undefined) {

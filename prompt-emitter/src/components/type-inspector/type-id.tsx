@@ -1,6 +1,6 @@
 import { Type } from "@typespec/compiler";
 import { $ } from "@typespec/compiler/experimental/typekit";
-import { useTypes } from "../context/types-context.jsx";
+import { useTypes } from "../../context/types-context.jsx";
 import { JsonValue } from "@alloy-js/json";
 
 export interface TypeIdProps {

@@ -1,5 +1,5 @@
 import { Children, shallowReactive, refkey, Refkey } from "@alloy-js/core";
-import { TypesContext } from "../context/types-context.jsx";
+import { TypesContext } from "../../context/types-context.jsx";
 import { Type } from "@typespec/compiler";
 
 export interface TypesProviderProps {
